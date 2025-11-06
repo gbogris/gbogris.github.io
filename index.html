@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GBogris GitHub Pages</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBogris GitHub Pages</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    pre {
+      background-color: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to my personal GitHub Pages!</h1>
-    <p>My hw0 project is located here: 
-       <a href="https://gbogris.github.io/progintro-hw0--gbogris-/">HW0 – gbogris</a>
-    </p>
-   </body>
+
+  <h1>Welcome to My GitHub Pages</h1>
+  <p>This site shows my Programming Intro Homework 0 solutions.</p>
+
+  <h2>Homework 0 Solutions</h2>
+  <pre id="solutions">Loading solutions...</pre>
+
+  <script>
+    fetch('hw0/pages/solutions.txt')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load solutions');
+        return response.text();
+      })
+      .then(text => {
+        document.getElementById('solutions').innerText = text;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('solutions').innerText = 'Could not load solutions.';
+      });
+  </script>
+
+</body>
 </html>
